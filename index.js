@@ -11,12 +11,13 @@ const arrayBitcoinCandle = [];
 let arrayMonero = [];
 const arrayMoneroCandle = [];
 
-setInterval(async () => {
-  const bitcoin = await api('USDT_BTC');
-  arrayBitcoin.push(bitcoin);
-  if (arrayBitcoin.length % 6 === 0 && arrayBitcoin.length !== 0) {
-    const newArray = arrayBitcoin.slice(arrayBitcoin.length - 6);
-    arrayBitcoinCandle.push({
+const getCandle = async (array, arrayCandle, moeda, currencyPair) => {
+  const currency = await api(currencyPair);
+  array.push(currency);
+  if (array.length % 6 === 0 && array.length !== 0) {
+    const newArray = array.slice(array.length - 6);
+    arrayCandle.push({
+      moeda,
       periodicidade: '1 minuto',
       open: newArray[newArray.length - 6].last,
       close: newArray[newArray.length - 1].last,
@@ -32,9 +33,10 @@ setInterval(async () => {
     });
   }
 
-  if (arrayBitcoin.length % 30 === 0 && arrayBitcoin.length !== 0) {
-    const newArray = arrayBitcoin.slice(arrayBitcoin.length - 30);
-    arrayBitcoinCandle.push({
+  if (array.length % 30 === 0 && array.length !== 0) {
+    const newArray = array.slice(array.length - 30);
+    arrayCandle.push({
+      moeda,
       periodicidade: '5 minutos',
       open: newArray[newArray.length - 30].last,
       close: newArray[newArray.length - 1].last,
@@ -50,9 +52,10 @@ setInterval(async () => {
     });
   }
 
-  if (arrayBitcoin.length % 60 === 0 && arrayBitcoin.length !== 0) {
-    const newArray = arrayBitcoin.slice(arrayBitcoin.length - 60);
-    arrayBitcoinCandle.push({
+  if (array.length % 60 === 0 && array.length !== 0) {
+    const newArray = array.slice(array.length - 60);
+    arrayCandle.push({
+      moeda,
       periodicidade: '10 minutos',
       open: newArray[newArray.length - 60].last,
       close: newArray[newArray.length - 1].last,
@@ -66,68 +69,13 @@ setInterval(async () => {
       ),
       time: newArray[newArray.length - 1].time,
     });
-    arrayBitcoin = [];
+    array = [];
   }
-}, 10000);
+};
 
 setInterval(async () => {
-  // const umMinuto = 6
-  const monero = await api('USDT_XMR');
-  arrayMonero.push(monero);
-  if (arrayMonero.length % 6 === 0 && arrayMonero.length !== 0) {
-    const newArray = arrayMonero.slice(arrayMonero.length - 6);
-    arrayMoneroCandle.push({
-      periodicidade: '1 minuto',
-      open: newArray[newArray.length - 6].last,
-      close: newArray[newArray.length - 1].last,
-      high: newArray.reduce(
-        (maximo, atual) => Math.max(maximo, atual.last),
-        Number.NEGATIVE_INFINITY,
-      ),
-      low: newArray.reduce(
-        (minimo, atual) => Math.min(minimo, atual.last),
-        Number.POSITIVE_INFINITY,
-      ),
-      time: newArray[newArray.length - 1].time,
-    });
-  }
-
-  if (arrayMonero.length % 30 === 0 && arrayMonero.length !== 0) {
-    const newArray = arrayMonero.slice(arrayMonero.length - 30);
-    arrayMoneroCandle.push({
-      periodicidade: '5 minutos',
-      open: newArray[newArray.length - 30].last,
-      close: newArray[newArray.length - 1].last,
-      high: newArray.reduce(
-        (maximo, atual) => Math.max(maximo, atual.last),
-        Number.NEGATIVE_INFINITY,
-      ),
-      low: newArray.reduce(
-        (minimo, atual) => Math.min(minimo, atual.last),
-        Number.POSITIVE_INFINITY,
-      ),
-      time: newArray[newArray.length - 1].time,
-    });
-  }
-
-  if (arrayMonero.length % 60 === 0 && arrayMonero.length !== 0) {
-    const newArray = arrayMonero.slice(arrayMonero.length - 60);
-    arrayMoneroCandle.push({
-      periodicidade: '10 minutos',
-      open: newArray[newArray.length - 60].last,
-      close: newArray[newArray.length - 1].last,
-      high: newArray.reduce(
-        (maximo, atual) => Math.max(maximo, atual.last),
-        Number.NEGATIVE_INFINITY,
-      ),
-      low: newArray.reduce(
-        (minimo, atual) => Math.min(minimo, atual.last),
-        Number.POSITIVE_INFINITY,
-      ),
-      time: newArray[newArray.length - 1].time,
-    });
-    arrayMonero = [];
-  }
+  getCandle(arrayBitcoin, arrayBitcoinCandle, 'Bitcoin', 'USDT_BTC');
+  getCandle(arrayMonero, arrayMoneroCandle, 'Monero', 'USDT_XMR');
 }, 10000);
 
 app.get('/', async (_req, res) => {

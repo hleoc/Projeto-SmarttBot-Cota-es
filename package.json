@@ -1,11 +1,12 @@
 {
   "name": "smarttBotCotacoes",
   "version": "1.0.0",
-  "description": "Boas vindas ao repositório do Projeto SmarttBot Cotações BACK-END!",
+  "description": "Projeto SmarttBot Cotações BACK-END",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "lint": "eslint --no-inline-config --ext .js,.jsx --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
