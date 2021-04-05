@@ -8,6 +8,7 @@ app.use(express.json());
 
 let arrayBitcoin = [];
 const arrayBitcoinCandle = [];
+
 let arrayMonero = [];
 const arrayMoneroCandle = [];
 
