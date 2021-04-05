@@ -1,0 +1,32 @@
+{
+  "name": "smarttBotCotacoes",
+  "version": "1.0.0",
+  "description": "Boas vindas ao repositório do Projeto SmarttBot Cotações BACK-END!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hleoc/Projeto-SmarttBot-Cota-es.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hleoc/Projeto-SmarttBot-Cota-es/issues"
+  },
+  "homepage": "https://github.com/hleoc/Projeto-SmarttBot-Cota-es#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  }
+}

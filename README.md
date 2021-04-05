@@ -12,10 +12,10 @@ Instruções para a instalação do projeto:
 Crie uma pasta para onde o projeto será clonado
 
 Clone o repositório
-git clone 
+git clone git@github.com:hleoc/Projeto-SmarttBot-Cotacoes.git
 
 Entre na pasta do repositório que você acabou de clonar:
-cd 
+cd Projeto-SmarttBot-Cotacoes
 
 Instale as dependências
 npm install
