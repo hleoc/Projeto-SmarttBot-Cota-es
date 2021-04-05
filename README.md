@@ -69,6 +69,7 @@ MySQL
 Postman
 Git/Github
 Arquitetura RESTful
+ESLint
 
 
 Melhorias Futuras
