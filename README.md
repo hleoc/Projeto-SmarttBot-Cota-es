@@ -21,7 +21,7 @@ Instale as dependências
 npm install
 
 Start o banco de dados MySQL
-
+Rode o script do arquivo XXXXXXXXXXXXXXXXXXXXXX no MySQL Workbench
 
 Em uma aba do terminal rode o servidor do NodeJs
 node index.js ou npm run dev
