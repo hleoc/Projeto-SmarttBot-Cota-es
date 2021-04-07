@@ -21,7 +21,7 @@ agregando-as em candlesticks (com os dados de abertura, máxima, mínima e fecha
   * `npm install`
 
 5. Start o banco de dados MySQL
-  * `Rode o script do arquivo script.sql no MySQL Workbench`
+  * `Rode o script do arquivo script.sql no MySQL`
 
 6. Em uma aba do terminal rode o servidor do NodeJs
   * `node index.js ou npm run dev`
@@ -36,6 +36,24 @@ banco de dados uma vez que estejam completos. Por exemplo, a cada um minuto, o s
 A API consumida foi a Poloniex Public API (mais especificamente o
 comando returnTicker ou o canal websocket Ticker Data). Não foram utilizados clientes de
 terceiros para consumir a API Poloniex.
+
+## Filtros disponíveis para uso
+- Moeda
+- Periodicidade
+- Período inicial (InitialTime)
+- Período final (LastTime)
+
+
+## Opções disponíveis para os filtros
+- Moeda:
+* "Bitcoin", "Monero" ou "XXXXXXXXXXXX"
+
+- Periodicidade:
+* "1 minuto", "5 minutos" ou "10 minutos"
+
+- Períodos:
+* Formato das datas a ser seguido: "YYYY-mm-dd HH:MM:SS"
+
 
 
 ## Data de Entrega
@@ -59,17 +77,12 @@ O projeto deve rodar na porta 3000 no back-end.
 Foram cobertos alguns recursos do código com testes unitários utilizando Jest e Frisby.
 
 
-## Requisitos realizados
-
-
-
-
 ## Tecnologias utilizadas
 VSCode
 JavaScript
 React
 NodeJS
-MySQL
+MySQL Workbench
 Postman
 Git/Github
 Arquitetura RESTful
@@ -79,3 +92,4 @@ ESLint
 ## Melhorias Futuras
 Refatoração da linguagem de programação para Python;
 Utilização do docker e docker-compose;
+Refatoração da mesma solução utilizando websocket;

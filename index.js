@@ -83,10 +83,6 @@ setInterval(async () => {
   getCandle(arrayMonero, arrayMoneroCandle, 'Monero', 'USDT_XMR');
 }, 10000);
 
-/* app.get('/', async (_req, res) => {
-  res.status(200).json([...arrayBitcoinCandle, ...arrayMoneroCandle]);
-}); */
-
 app.use('/getCandles', controller);
 
 const PORT = 3000;
