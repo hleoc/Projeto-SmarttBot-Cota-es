@@ -21,7 +21,7 @@ agregando-as em candlesticks (com os dados de abertura, máxima, mínima e fecha
   * `npm install`
 
 5. Start o banco de dados MySQL
-  * `Rode o script do arquivo XXXXXXXXXXXXXXXXXXXXXX no MySQL Workbench`
+  * `Rode o script do arquivo script.sql no MySQL Workbench`
 
 6. Em uma aba do terminal rode o servidor do NodeJs
   * `node index.js ou npm run dev`
@@ -47,16 +47,16 @@ O Projeto SmarttBot Cotações será realizado utilizando o MySQL como banco de 
 
 
 ## Conexão com o Banco:
-A conexão do banco local deverá conter os seguintes parâmetros:
+A conexão do banco local contém os seguintes parâmetros:
 
 
 
-O banco Poloniex possui uma tabela chamada Contações com sete Colunas: moeda, periodicidade, open, close, high, low e time.
+O banco Poloniex possui uma tabela chamada Cotações com sete Colunas: moeda, periodicidade, open, close, high, low e time.
 
 O projeto deve rodar na porta 3000 no back-end.
 
 ## Cobertura de testes unitários
-Foram cobertos alguns recursos do código com testes unitários com Jest
+Foram cobertos alguns recursos do código com testes unitários utilizando Jest e Frisby.
 
 
 ## Requisitos realizados
