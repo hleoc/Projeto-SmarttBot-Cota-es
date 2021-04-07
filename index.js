@@ -2,6 +2,10 @@ const express = require('express');
 
 const { api } = require('./apiConsumida');
 
+const controller = require('./Controllers/controller');
+
+const model = require('./Models/Candlesticks');
+
 const app = express();
 
 app.use(express.json());
@@ -17,7 +21,7 @@ const getCandle = async (array, arrayCandle, moeda, currencyPair) => {
   array.push(currency);
   if (array.length % 6 === 0 && array.length !== 0) {
     const newArray = array.slice(array.length - 6);
-    arrayCandle.push({
+    model.create({
       moeda,
       periodicidade: '1 minuto',
       open: newArray[newArray.length - 6].last,
@@ -36,7 +40,7 @@ const getCandle = async (array, arrayCandle, moeda, currencyPair) => {
 
   if (array.length % 30 === 0 && array.length !== 0) {
     const newArray = array.slice(array.length - 30);
-    arrayCandle.push({
+    model.create({
       moeda,
       periodicidade: '5 minutos',
       open: newArray[newArray.length - 30].last,
@@ -55,7 +59,7 @@ const getCandle = async (array, arrayCandle, moeda, currencyPair) => {
 
   if (array.length % 60 === 0 && array.length !== 0) {
     const newArray = array.slice(array.length - 60);
-    arrayCandle.push({
+    model.create({
       moeda,
       periodicidade: '10 minutos',
       open: newArray[newArray.length - 60].last,
@@ -79,9 +83,11 @@ setInterval(async () => {
   getCandle(arrayMonero, arrayMoneroCandle, 'Monero', 'USDT_XMR');
 }, 10000);
 
-app.get('/', async (_req, res) => {
+/* app.get('/', async (_req, res) => {
   res.status(200).json([...arrayBitcoinCandle, ...arrayMoneroCandle]);
-});
+}); */
+
+app.use('/getCandles', controller);
 
 const PORT = 3000;
 
