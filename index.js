@@ -16,6 +16,9 @@ const arrayBitcoinCandle = [];
 let arrayMonero = [];
 const arrayMoneroCandle = [];
 
+let arrayLitecoin = [];
+const arrayLitecoinCandle = [];
+
 const getCandle = async (array, arrayCandle, moeda, currencyPair) => {
   const currency = await api(currencyPair);
   array.push(currency);
@@ -81,6 +84,7 @@ const getCandle = async (array, arrayCandle, moeda, currencyPair) => {
 setInterval(async () => {
   getCandle(arrayBitcoin, arrayBitcoinCandle, 'Bitcoin', 'USDT_BTC');
   getCandle(arrayMonero, arrayMoneroCandle, 'Monero', 'USDT_XMR');
+  getCandle(arrayLitecoin, arrayLitecoinCandle, 'Litecoin', 'USDT_LTC');
 }, 10000);
 
 app.use('/getCandles', controller);
