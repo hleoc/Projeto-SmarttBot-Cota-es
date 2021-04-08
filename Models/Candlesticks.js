@@ -12,7 +12,7 @@ const create = async ({ moeda, periodicidade, open, close, high, low, time }) =>
 
 const getAll = async () => {
   const [candles] = await connection.execute(
-    'SELECT moeda, periodicidade, open, close, high, low, time FROM Cotações',
+    'SELECT id, moeda, periodicidade, open, close, high, low, time FROM Cotações',
   );
   return candles;
 };

@@ -20,22 +20,39 @@ agregando-as em candlesticks (com os dados de abertura, máxima, mínima e fecha
 4. Instale as dependências
   * `npm install`
 
-5. Start o banco de dados MySQL
+5. Start o banco de dados MySQL para criar o banco de dados e a tabela
   * `Rode o script do arquivo script.sql no MySQL`
 
-6. Em uma aba do terminal rode o servidor do NodeJs
+6. Configure um arquivo .env com as seguintes variáveis de ambiente
+  MYSQL_USER=coloqueSeuUser
+  MYSQL_PASSWORD=coloqueSeuPassword
+  HOSTNAME=localhost
+  NODE_ENV=test
+ 
+ * Para rodar a aplicação no modo de teste coloque a variável NODE_ENV=test. Caso contrário o sistema adotará o modo de desenvolvimento. 
+
+7. Em uma aba do terminal rode o servidor do NodeJs
   * `node index.js ou npm run dev`
+
+
+## Instruções para testar o projeto:
+- Abra um novo terminal e digite o comando
+  * `npm test`
+OBS: a aplicação deve estar rodando.
 
 
 ## O que foi desenvolvido no back-end
 Foi desenvolvida uma API utilizando a arquitetura RESTful!
 
-Foram construidos candles de 1min, 5min e 10min. Os candles são salvos no
-banco de dados uma vez que estejam completos. Por exemplo, a cada um minuto, o sistema irá salvar no banco de dados o último candle de 1min finalizado e assim por diante.
+Foram construidos candles de 1 minuto, 5 minutos e 10 minutos. Os candles são salvos no
+banco de dados uma vez que estejam completos. Por exemplo, a cada 1 minuto, o sistema irá agrupar 6 dados vindos da API Poloniex Public para gerar um candle de 1 minuto. Após, isso esse dado calculado será salvo no banco de dados.
 
 A API consumida foi a Poloniex Public API (mais especificamente o
 comando returnTicker ou o canal websocket Ticker Data). Não foram utilizados clientes de
 terceiros para consumir a API Poloniex.
+
+O projeto deve rodar na porta 3000 no back-end.
+
 
 ## Filtros disponíveis para uso
 - Moeda
@@ -46,14 +63,13 @@ terceiros para consumir a API Poloniex.
 
 ## Opções disponíveis para os filtros
 - Moeda:
-* "Bitcoin", "Monero" ou "XXXXXXXXXXXX"
+* "Bitcoin", "Monero" ou "Litecoin"
 
 - Periodicidade:
 * "1 minuto", "5 minutos" ou "10 minutos"
 
 - Períodos:
 * Formato das datas a ser seguido: "YYYY-mm-dd HH:MM:SS"
-
 
 
 ## Data de Entrega
@@ -64,17 +80,9 @@ O projeto tem até a seguinte data para ser entregue: 07/04/2021, quarta-feira, 
 O Projeto SmarttBot Cotações será realizado utilizando o MySQL como banco de dados.
 
 
-## Conexão com o Banco:
-A conexão do banco local contém os seguintes parâmetros:
-
-
-
-O banco Poloniex possui uma tabela chamada Cotações com sete Colunas: moeda, periodicidade, open, close, high, low e time.
-
-O projeto deve rodar na porta 3000 no back-end.
-
 ## Cobertura de testes unitários
-Foram cobertos alguns recursos do código com testes unitários utilizando Jest e Frisby.
+Foi coberto a resposta da consulta básica do bando de dados utilizando Jest, Frisby e Sequelize.
+O Sequelize foi utilizado para permitir a manipulação do banco de dados para a realização dos testes.
 
 
 ## Tecnologias utilizadas
@@ -87,6 +95,7 @@ Postman
 Git/Github
 Arquitetura RESTful
 ESLint
+Sequelize
 
 
 ## Melhorias Futuras
